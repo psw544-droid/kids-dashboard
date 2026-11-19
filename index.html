@@ -1733,8 +1733,16 @@
     .task{ min-height:42px; }
     .screen .panel{ flex:0 0 auto; }
     .screen .panel .tasks{ flex:0 0 auto; max-height:none; overflow:visible; }
-    .fambody{ grid-template-columns:1fr; grid-template-rows:minmax(0,1.1fr) minmax(0,.9fr); }
-    .compose{ border-right:0; border-bottom:2px solid #f0f5fb; }
+    .famtop .sub{ display:none; }
+    .famtop h2{ white-space:nowrap; font-size:clamp(16px,2.3vh,21px); }
+    .fambody{
+      display:flex; flex-direction:column;
+      overflow-y:auto; -webkit-overflow-scrolling:touch;
+    }
+    .compose{ border-right:0; border-bottom:2px solid #f0f5fb; flex:0 0 auto; overflow:visible; }
+    .paper{ aspect-ratio:16 / 10; }
+    .gallery{ flex:0 0 auto; min-height:0; }
+    .glist{ max-height:none; overflow:visible; }
     .glist{ grid-template-columns:repeat(3, minmax(0,1fr)); }
     .tmbody{ grid-template-columns:minmax(0, 38%) minmax(0,1fr); }
   }

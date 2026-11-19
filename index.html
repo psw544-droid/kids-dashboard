@@ -1885,13 +1885,19 @@
     overflow:hidden;
     animation:tpop .45s cubic-bezier(.2,1.4,.4,1);
     box-shadow:0 3px 10px rgba(60,90,140,.16), inset 0 0 0 2px #eef4fb;
-  .ticket.open .trank{ font-size:clamp(14px,2.1vh,19px); color:#1d3552; line-height:1.1; }
+  .ticket.open .tin{
+    position:absolute; inset:3px;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .ticket.open .trank{ font-size:clamp(13px,2vh,18px); color:#1d3552; line-height:1.1; }
   .ticket.open .tprize{
-    display:block; font-size:clamp(8px,1.05vh,10px); color:#7c95b0;
-    margin-top:2px; line-height:1.12; padding:0 3px;
+    font-size:clamp(7px,.95vh,9px); color:#7c95b0;
+    margin-top:2px; line-height:1.1; padding:0 2px;
     overflow:hidden; overflow-wrap:anywhere;
-    display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;
-    max-height:3.4em;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
+    max-height:2.3em;
   }
   .ticket.open.boom{ background:#f4f6f9; }
   .ticket.open.boom .trank{ color:#9aabbe; }
@@ -1903,7 +1909,7 @@
   .hrow{ display:flex; gap:7px; align-items:center; font-size:clamp(11.5px,1.6vh,14px); color:#26405f; background:#f8fbff; border-radius:9px; padding:6px 9px; }
   .hrow b{ font-weight:400; flex:0 0 auto; }
   .hrow .hwhat{ flex:1 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .hwhen{ margin-left:auto; color:#a8bcd2; font-size:.9em; }
+  .hwhen{ margin-left:auto; flex:0 0 auto; padding-left:8px; color:#a8bcd2; font-size:.9em; }
   .hempty{ color:#a8bcd2; font-size:clamp(11.5px,1.6vh,14px); padding:8px 2px; }
 
   .prizeedit{ background:#fff; border-radius:20px; box-shadow:var(--shadow); padding:10px 13px 13px; flex:0 0 auto; }
@@ -5023,12 +5029,14 @@
       if (t.by) {
         b.classList.add('open');
         if (!t.r) b.classList.add('boom');
+        var tin = el('span', 'tin');
         var rk = el('span', 'trank');
         rk.textContent = t.r ? t.r + '등' : '꽝';
-        b.appendChild(rk);
         var pz = el('span', 'tprize');
         pz.textContent = state.draw.prizes[String(t.r)] || '';
-        b.appendChild(pz);
+        tin.appendChild(rk);
+        tin.appendChild(pz);
+        b.appendChild(tin);
         b.title = famMember(t.by).name + ' · ' + (t.r ? t.r + '등' : '꽝');
       } else {
         var num = el('span', 'tnum');

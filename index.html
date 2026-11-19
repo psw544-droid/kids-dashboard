@@ -5069,7 +5069,8 @@
           var r = el('span', 'hwhat');
           r.textContent = (h.r ? h.r + '등 · ' : '꽝 · ') + (h.prize || '');
           var when = el('span', 'hwhen');
-          when.textContent = fmtWhen(h.ts);
+          var wd = new Date(h.ts);
+          when.textContent = pad2(wd.getHours()) + ':' + pad2(wd.getMinutes());
           row.appendChild(w);
           row.appendChild(r);
           row.appendChild(when);

@@ -166,6 +166,42 @@
   }
   .controls button:active{ opacity:1; background:rgba(120,165,215,.22); }
 
+  /* ---------------- 보기 선택 (전체 / 유찬 / 세인) ---------------- */
+  .viewsw{
+    align-self:flex-start;
+    display:inline-flex;
+    gap:2px;
+    padding:3px;
+    border-radius:99px;
+    background:rgba(120,165,215,.10);
+    margin-bottom:clamp(2px, .5vh, 6px);
+  }
+  .viewsw button{
+    border:0;
+    background:none;
+    color:#7c95b0;
+    border-radius:99px;
+    padding:clamp(3px, .45vh, 5px) clamp(8px, .9vw, 13px);
+    font-size:clamp(11px, 1.5vh, 14px);
+    line-height:1.1;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:background .18s, color .18s, box-shadow .18s;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .viewsw button.on{
+    background:#fff;
+    color:#2a5c8f;
+    box-shadow:0 1px 4px rgba(60,100,150,.18);
+  }
+  .viewsw button:active{ transform:scale(.96); }
+
+  /* 한 아이만 볼 때는 그 카드만 남기고 나머지는 숨김 */
+  #app[data-view="yuchan"] .panel[data-kid="sein"],
+  #app[data-view="sein"] .panel[data-kid="yuchan"]{ display:none; }
+  #app[data-view="yuchan"] main,
+  #app[data-view="sein"] main{ grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(0,1fr); }
+
   /* ---------------- 날씨 카드 ---------------- */
   .weather{
     flex:0 0 clamp(248px, 27vw, 338px);
@@ -1388,13 +1424,37 @@
     white-space:nowrap;
   }
 
-  /* ---------------- 작은 화면 / 세로 화면 ---------------- */
-  @media (max-aspect-ratio: 1/1){
+  /* ---------------- 작은 화면 / 세로 화면 (세로로 스크롤해서 전부 보이게) ---------------- */
+  @media (max-width: 900px), (max-aspect-ratio: 1/1){
+    html{ height:auto; min-height:100%; }
+    body{
+      height:auto;
+      min-height:100vh;
+      min-height:100dvh;
+      overflow-x:hidden;
+      overflow-y:auto;
+      -webkit-overflow-scrolling:touch;
+      overscroll-behavior-y:contain;
+    }
+    #app{
+      position:relative;
+      inset:auto;
+      height:auto;
+      min-height:100vh;
+      min-height:100dvh;
+      grid-template-rows:auto auto;
+      align-content:start;
+    }
     header{ flex-wrap:wrap; }
     .clockbox{ flex:1 1 100%; }
-    .weather{ flex:1 1 34%; }
-    .famcard{ flex:1 1 60%; }
-    main{ grid-template-columns:1fr; grid-template-rows:1fr 1fr; }
+    .weather{ flex:1 1 42%; }
+    .famcard{ flex:1 1 55%; }
+    .weather, .famcard{ overflow:visible; }
+    .wdays{ grid-template-columns:repeat(auto-fit, minmax(112px, 1fr)); }
+    .wday{ flex-wrap:wrap; row-gap:2px; }
+    main{ grid-template-columns:1fr; grid-template-rows:none; grid-auto-rows:auto; }
+    .panel{ height:auto; overflow:visible; }
+    .tasks{ flex:0 0 auto; min-height:0; max-height:none; overflow:visible; }
     .clock{ font-size:clamp(40px, 7vh, 72px); }
     .task{ min-height:42px; }
     .fambody{ grid-template-columns:1fr; grid-template-rows:minmax(0,1.1fr) minmax(0,.9fr); }
@@ -1419,6 +1479,11 @@
   <!-- ================= 상단 : 시계 + 날씨 + 가족 보드 ================= -->
   <header>
     <div class="clockbox">
+      <div class="viewsw" id="viewSw" role="group" aria-label="누구 화면을 볼까요">
+        <button type="button" data-view="all" class="on">전체</button>
+        <button type="button" data-view="yuchan">유찬</button>
+        <button type="button" data-view="sein">세인</button>
+      </div>
       <div class="controls">
         <button id="btnFull" title="전체 화면" aria-label="전체 화면">⛶</button>
         <button id="btnGear" title="설정" aria-label="설정">⚙</button>
@@ -2753,20 +2818,23 @@
   var peekTimer = null;
 
   function updateNight() {
-    var h = new Date().getHours();
-    var natural = (h >= 22 || h < 7);
+    var d = new Date();
+    var mins = d.getHours() * 60 + d.getMinutes();
+    /* 22:00 ~ 06:59 는 밤 화면. 분 단위로 계산해서 정각(22:00:00)에 바로 켜지도록. */
+    var natural = (mins >= 22 * 60 || mins < 7 * 60);
     var preview = Date.now() < previewUntil;
     var offSnooze = Date.now() < nightOffUntil;
     var on = (natural && !offSnooze) || preview;
 
-    if (on !== nightOn) {
-      nightOn = on;
+    /* 시간이 밤이면 화면 상태와 상관없이 항상 맞춘다 (다른 곳에서 클래스가 풀려도 복구). */
+    if (nightEl.classList.contains('active') !== on) {
       nightEl.classList.toggle('active', on);
-      if (on) {
-        nightEl.classList.remove('peek');
-        clearTimeout(peekTimer);
-      }
     }
+    if (on && !nightOn) {
+      nightEl.classList.remove('peek');
+      clearTimeout(peekTimer);
+    }
+    nightOn = on;
   }
 
   nightEl.addEventListener('pointerdown', function () {
@@ -3503,12 +3571,44 @@
   });
 
   /* =========================================================
+     13-2. 보기 선택 (전체 / 유찬 / 세인) · 이 기기에 기억
+     ========================================================= */
+  var VIEW_KEY = 'kidsdash.view.v1';
+  var appEl = $('#app');
+  var viewBtns = Array.prototype.slice.call(document.querySelectorAll('#viewSw button'));
+
+  function applyView(v, persist) {
+    if (v !== 'yuchan' && v !== 'sein') v = 'all';
+    appEl.setAttribute('data-view', v);
+    viewBtns.forEach(function (b) {
+      var on = b.getAttribute('data-view') === v;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    if (persist) {
+      try { localStorage.setItem(VIEW_KEY, v); } catch (e) {}
+    }
+  }
+
+  function savedView() {
+    try {
+      var v = localStorage.getItem(VIEW_KEY);
+      return (v === 'yuchan' || v === 'sein') ? v : 'all';
+    } catch (e) { return 'all'; }
+  }
+
+  viewBtns.forEach(function (b) {
+    b.addEventListener('click', function () { applyView(b.getAttribute('data-view'), true); });
+  });
+
+  /* =========================================================
      17. 시작
      ========================================================= */
   function init() {
     document.documentElement.removeAttribute('data-night-init');
     document.getElementById('app').style.visibility = '';
 
+    applyView(savedView(), false);
     syncDay();
     renderAll();
 
@@ -3526,6 +3626,18 @@
 
     setInterval(tickClock, 1000);
     setInterval(loadWeather, 30 * 60 * 1000);   // 30분마다 날씨 갱신
+
+    /* 폰이 잠들었다 깨어나거나 탭이 다시 보일 때 바로 밤 화면/시계를 맞춘다 */
+    function resync() {
+      tickClock();
+      updateNight();
+    }
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden) resync();
+    });
+    window.addEventListener('focus', resync);
+    window.addEventListener('pageshow', resync);
+    window.addEventListener('orientationchange', resync);
   }
 
   if (document.readyState === 'loading') {

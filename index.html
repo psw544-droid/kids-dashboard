@@ -1764,6 +1764,7 @@
   /* ---------------- 타일 색 ---------------- */
   .tile-lilac{ --tc:#a78bfa; --td:#7c5cd6; --ts:#f3efff; }
   .tile-sun{ --tc:#f7b731; --td:#c08a10; --ts:#fff6dc; }
+  .tile-chat{ --tc:#42c6d8; --td:#2b8fa0; --ts:#e6fafd; }
   .pc-indigo{ --pc:#5b8def; --pdeep:#3a67c8; --psoft:#eaf1ff; }
   .pc-rose{ --pc:#e78fb3; --pdeep:#c2588a; --psoft:#fff0f6; }
 
@@ -2260,6 +2261,151 @@
     72%{ transform:translate(-50%,0) scale(1); opacity:1; }
     100%{ transform:translate(-50%,-14px) scale(.96); opacity:0; }
   }
+
+  /* ---------------- MAROEL 로고 ---------------- */
+  .brand{
+    display:flex; align-items:center; gap:8px;
+    font-size:clamp(15px,2.2vh,22px); color:#1d3552;
+    white-space:nowrap; min-width:0;
+  }
+  .blogo{
+    width:clamp(28px,4.2vh,38px); height:clamp(28px,4.2vh,38px);
+    border-radius:11px; object-fit:cover; object-position:50% 32%;
+    background:#fdf7ee; flex:0 0 auto;
+    box-shadow:0 2px 7px rgba(130,90,40,.22), inset 0 0 0 1px rgba(255,255,255,.7);
+  }
+  .btxt{ display:flex; align-items:baseline; gap:6px; min-width:0; overflow:hidden; }
+  .btxt b{ font-weight:400; color:#8a4a1e; letter-spacing:.03em; white-space:nowrap; }
+  .btxt i{ font-style:normal; font-size:clamp(10.5px,1.55vh,15px); color:#7c95b0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .loginlogo{ display:flex; justify-content:center; margin-bottom:10px; }
+  .loginlogo img{
+    width:min(60vw,240px); height:auto; border-radius:22px; background:#fdf7ee;
+    box-shadow:0 14px 32px rgba(150,110,60,.16);
+  }
+  @media (max-width: 560px){
+    .btxt i{ display:none; }
+    .switchbtn .swtxt{ display:none; }
+  }
+
+  /* ---------------- 우리 가족 지금 뭐해요? ---------------- */
+  .statuswrap{ display:flex; flex-direction:column; gap:7px; flex:0 0 auto; }
+  .statushead{ display:flex; align-items:baseline; gap:7px; padding:0 3px; flex-wrap:wrap; }
+  .statushead b{ font-weight:400; font-size:clamp(13px,1.9vh,16px); color:#1d3552; }
+  .statushead span{ font-size:clamp(10px,1.4vh,12px); color:#a8bcd2; }
+  .statusgrid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; }
+  .statuscard{
+    display:flex; align-items:center; gap:8px; text-align:left; min-width:0;
+    border:2px solid #fff; border-radius:18px;
+    background:linear-gradient(165deg,#fff 0%, #f6fbff 100%);
+    box-shadow:0 6px 16px rgba(43,74,115,.08);
+    padding:7px 9px; cursor:pointer; font-family:inherit; color:inherit;
+    transition:transform .12s;
+  }
+  .statuscard:active{ transform:scale(.98); }
+  .stface{
+    width:clamp(30px,4.4vh,38px); height:clamp(30px,4.4vh,38px);
+    border-radius:50%; background:#f7fbff; display:grid; place-items:center;
+    overflow:hidden; flex:0 0 auto; border:2px solid var(--st,#e9f4ff);
+  }
+  .stface img{ width:112%; height:112%; object-fit:contain; display:block; }
+  .stbody{ display:flex; flex-direction:column; gap:1px; min-width:0; line-height:1.2; }
+  .stname{ font-size:clamp(9.5px,1.35vh,11.5px); color:#9db1c7; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .stval{ font-size:clamp(11.5px,1.6vh,13.5px); color:#26405f; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .stwhen{ font-size:clamp(9px,1.25vh,10.5px); color:#b2c3d6; white-space:nowrap; }
+  .stbusy{
+    display:inline-flex; width:max-content; margin-top:1px;
+    font-size:clamp(8.5px,1.15vh,10px); color:#c2453f; background:#ffeceb;
+    border-radius:99px; padding:1px 6px; white-space:nowrap;
+  }
+
+  /* ---------------- 상태 고르기 ---------------- */
+  #statusModal{ position:fixed; inset:0; z-index:8550; display:none; align-items:center; justify-content:center; padding:18px; background:rgba(20,40,60,.32); }
+  #statusModal.show{ display:flex; }
+  .statuspresets{ display:flex; flex-wrap:wrap; gap:6px; margin:8px 0 10px; }
+  .spreset{
+    border:2px solid #e6eff9; background:#fbfdff; color:#54718f;
+    border-radius:99px; padding:7px 12px; font-family:inherit; font-size:13px; cursor:pointer;
+  }
+  .spreset.on{ border-color:#7db8ff; background:#eef7ff; color:#2f6ea8; }
+  .busytoggle{
+    width:100%; margin-top:8px; border:2px solid #ffd9d6; background:#fff; color:#c2453f;
+    border-radius:12px; padding:9px; font-family:inherit; font-size:13px; cursor:pointer;
+  }
+  .busytoggle.on{ background:#ffeceb; border-color:#f3a9b4; }
+
+  /* ---------------- 마로엘 가족톡 ---------------- */
+  #scr-talk{ overflow:hidden; }
+  .talkcount{ margin-left:auto; flex:0 0 auto; font-size:clamp(10.5px,1.45vh,12.5px); color:#a8bcd2; background:#fff; border-radius:99px; padding:5px 10px; box-shadow:var(--shadow); }
+  .talkhead{ display:flex; flex-direction:column; gap:2px; flex:0 0 auto; padding:0 3px; }
+  .talktitle{ font-size:clamp(17px,2.4vh,22px); color:#1d3552; }
+  .talksub{ font-size:clamp(10.5px,1.45vh,12.5px); color:#9db1c7; }
+  .talkquick{ display:flex; gap:6px; overflow-x:auto; padding:2px 0 4px; flex:0 0 auto; scrollbar-width:none; }
+  .talkquick::-webkit-scrollbar{ display:none; }
+  .qchip{
+    flex:0 0 auto; border:2px solid #ffe0ee; background:#fff; color:#c9527f;
+    border-radius:99px; padding:7px 12px; font-family:inherit;
+    font-size:clamp(11.5px,1.6vh,13px); cursor:pointer; white-space:nowrap;
+    box-shadow:0 2px 7px rgba(230,140,180,.10);
+  }
+  .qchip:active{ transform:scale(.96); }
+  .talklist{
+    flex:1 1 auto; min-height:0; overflow-y:auto;
+    display:flex; flex-direction:column; gap:8px;
+    padding:4px 2px 8px; overscroll-behavior:contain; -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .talklist::-webkit-scrollbar{ display:none; }
+  .tday{ text-align:center; font-size:11px; color:#a8bcd2; padding:4px 0; }
+  .tmsg{ display:flex; gap:7px; align-items:flex-end; max-width:100%; }
+  .tmsg.mine{ flex-direction:row-reverse; }
+  .tmface{
+    width:clamp(30px,4.2vh,36px); height:clamp(30px,4.2vh,36px);
+    border-radius:50%; background:#f7fbff; border:2px solid #eaf3fd;
+    overflow:hidden; display:grid; place-items:center; flex:0 0 auto;
+  }
+  .tmface img{ width:112%; height:112%; object-fit:contain; display:block; }
+  .tmbody{ display:flex; flex-direction:column; gap:2px; max-width:78%; min-width:0; }
+  .tmsg.mine .tmbody{ align-items:flex-end; }
+  .tmmeta{ font-size:clamp(9.5px,1.3vh,11px); color:#a8bcd2; white-space:nowrap; }
+  .tmbubble{
+    background:#fff; border-radius:16px 16px 16px 4px;
+    padding:9px 12px; font-size:clamp(13.5px,1.9vh,16px); line-height:1.35;
+    color:#26405f; box-shadow:0 3px 10px rgba(45,75,115,.08);
+    overflow-wrap:anywhere; white-space:pre-line;
+  }
+  .tmsg.mine .tmbubble{
+    background:linear-gradient(135deg,#ffd9ea,#ffc3dd);
+    border-radius:16px 16px 4px 16px; color:#7a3a56;
+    box-shadow:0 3px 10px rgba(220,120,160,.16);
+  }
+  .tempty{ margin:auto; text-align:center; color:#a8bcd2; font-size:clamp(12.5px,1.8vh,14.5px); line-height:1.6; padding:20px 10px; }
+  .talkcompose{
+    flex:0 0 auto; display:flex; flex-direction:column; gap:6px;
+    background:#fff; border-radius:18px;
+    box-shadow:0 -4px 18px rgba(45,75,115,.08); padding:8px 10px;
+  }
+  .talkto{ display:flex; gap:5px; align-items:center; overflow-x:auto; scrollbar-width:none; }
+  .talkto::-webkit-scrollbar{ display:none; }
+  .talktolabel{ flex:0 0 auto; font-size:11px; color:#9db1c7; }
+  .talkchip{
+    flex:0 0 auto; border:0; background:#f2f7fc; color:#7c95b0;
+    border-radius:99px; padding:5px 10px; font-family:inherit; font-size:11.5px; cursor:pointer; white-space:nowrap;
+  }
+  .talkchip.on{ background:#ffd9ea; color:#c9527f; }
+  .talkrow{ display:flex; gap:6px; }
+  .talkrow input{
+    flex:1 1 auto; min-width:0; border:2px solid #e6eff9; border-radius:13px;
+    background:#fbfdff; color:#26405f; font-family:inherit; font-size:13.5px;
+    padding:9px 11px; outline:none; -webkit-user-select:text; user-select:text;
+  }
+  .talkrow input:focus{ border-color:#ffb3d1; background:#fff; }
+  .talkrow button{
+    flex:0 0 auto; border:0; border-radius:13px;
+    background:linear-gradient(135deg,#ff8fb8,#ff6fa5); color:#fff;
+    font-family:inherit; font-size:13.5px; padding:9px 14px; cursor:pointer;
+    box-shadow:0 4px 12px rgba(255,120,165,.28);
+  }
+  .talkrow button:active{ transform:scale(.96); }
 </style>
 </head>
 
@@ -2272,10 +2418,13 @@
 
     <header class="hero">
       <div class="heroTop">
-        <div class="brand">🏠 우리집 대시보드</div>
+        <div class="brand">
+          <img class="blogo" src="maroel-logo.jpg" alt="MAROEL">
+          <span class="btxt"><b>MAROEL</b><i>우리집 대시보드</i></span>
+        </div>
         <div class="heroRight">
           <div class="whochip" id="whoChip" hidden><img alt=""><b>–</b><span>–</span></div>
-          <button class="switchbtn" id="btnSwitch" type="button">🔄 사용자 전환</button>
+          <button class="switchbtn" id="btnSwitch" type="button">🔄 <span class="swtxt">사용자 전환</span></button>
           <div class="controls">
             <button id="btnFull" title="전체 화면" aria-label="전체 화면">⛶</button>
             <button id="btnGear" title="설정" aria-label="설정">⚙</button>
@@ -2322,6 +2471,8 @@
       <button class="lockchip" id="lockChip" type="button" data-act="relock" hidden>🔓 부모님 확인됨</button>
       <button class="hellogo" id="helloGo" type="button" data-go="home">내 화면 ›</button>
     </div>
+
+    <div id="homeStatus" class="statuswrap"></div>
 
     <div id="homeExtra"></div>
 
@@ -2515,7 +2666,7 @@
     <div class="backbar">
       <button class="backbtn" data-go="home">← 우리집 홈</button>
     </div>
-    <div class="screenhead">📌 가족 공지 · 포스트잇</div>
+    <div class="screenhead">📌 가족 공지</div>
 
     <div class="nform">
       <div class="nrow">
@@ -2584,6 +2735,27 @@
       <span class="studystars" id="studyStars">⭐ 0</span>
     </div>
     <div class="studyroot" id="studyRoot"></div>
+  </section>
+
+  <!-- ================= 마로엘 가족톡 ================= -->
+  <section class="screen" id="scr-talk">
+    <div class="backbar">
+      <button class="backbtn" data-go="home">← 내 화면</button>
+      <span class="talkcount" id="talkCount"></span>
+    </div>
+    <div class="talkhead">
+      <div class="talktitle">💬 마로엘 가족톡</div>
+      <div class="talksub">카톡 없이도 가족과 이야기해요 · 내 이름으로 자동 전송</div>
+    </div>
+    <div class="talkquick" id="talkQuick"></div>
+    <div class="talklist" id="talkList"></div>
+    <div class="talkcompose">
+      <div class="talkto" id="talkToRow"></div>
+      <div class="talkrow">
+        <input id="talkInput" type="text" maxlength="120" autocomplete="off" placeholder="하고 싶은 말을 적어 보세요">
+        <button id="talkSend" type="button">보내기</button>
+      </div>
+    </div>
   </section>
 </div>
 
@@ -2759,7 +2931,8 @@
 <div id="login" aria-hidden="true">
   <div class="loginwrap">
     <div class="logintop">
-      <div class="loginhome">🏠 우리집 대시보드</div>
+      <div class="loginlogo"><img src="maroel-logo.jpg" alt="MAROEL 로고"></div>
+      <div class="loginhome">MAROEL 우리집 대시보드</div>
       <h1>누가 접속했나요?</h1>
       <p class="loginsub">내 이름을 콕 눌러 주세요</p>
     </div>
@@ -2791,6 +2964,22 @@
     <div id="locBody" class="locbody">위치를 확인하는 중…</div>
     <div class="modalacts">
       <button class="cancel" id="locClose" type="button">닫기</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 내 상태 알려 주기 ================= -->
+<div id="statusModal">
+  <div class="modalcard">
+    <h3 id="statusTitle">지금 뭐해요?</h3>
+    <p class="hint">지금 하는 일을 골라 두면 가족이 한눈에 볼 수 있어요.</p>
+    <div class="statuspresets" id="statusPresets"></div>
+    <input type="text" id="statusInput" maxlength="20" autocomplete="off" placeholder="직접 적어도 돼요 (예: 할머니 댁)">
+    <button class="busytoggle" id="statusBusy" type="button">🚨 연락 어려워요</button>
+    <div class="modalacts">
+      <button class="del" id="statusClear" type="button">지우기</button>
+      <button class="cancel" id="statusCancel" type="button">취소</button>
+      <button class="ok" id="statusOk" type="button">저장</button>
     </div>
   </div>
 </div>
@@ -3188,6 +3377,14 @@
     if (!state.study.sein.days || typeof state.study.sein.days !== 'object' || Array.isArray(state.study.sein.days)) state.study.sein.days = {};
     if (!state.study.sein.trace || typeof state.study.sein.trace !== 'object') state.study.sein.trace = { day: '', count: 0 };
   }
+
+  /* 가족 상태 (지금 뭐해요?) */
+  if (!state.status || typeof state.status !== 'object' || Array.isArray(state.status)) state.status = {};
+  ['yuchan', 'sein', 'dad', 'mom'].forEach(function (sid) {
+    var s0 = state.status[sid];
+    if (s0 && (typeof s0 !== 'object' || typeof s0.text !== 'string' || !s0.text.trim())) delete state.status[sid];
+  });
+
   save();
 
   function save() {
@@ -4767,7 +4964,7 @@
      13-2. 화면 이동 · 홈 타일 · 이 기기 고정
      ========================================================= */
   var START_KEY = 'kidsdash.start.v1';
-  var SCREENS = ['home', 'yuchan', 'sein', 'today', 'dad', 'mom', 'notice', 'draw', 'study'];
+  var SCREENS = ['home', 'yuchan', 'sein', 'today', 'dad', 'mom', 'notice', 'draw', 'study', 'talk'];
   var appEl = $('#app');
   var curScreen = 'home';
 
@@ -4815,6 +5012,7 @@
     if (name === 'notice') renderNotices();
     if (name === 'draw') renderDraw();
     if (name === 'study') renderStudy();
+    if (name === 'talk') renderTalk();
 
     paintPins();
     updateHome();
@@ -4870,6 +5068,7 @@
 
     setBadge('family', (typeof posts !== 'undefined' && posts && posts.length) ? '새 글 ' + posts.length : '');
     setBadge('notice', (typeof notices !== 'undefined' && notices && notices.length) ? notices.length + '개' : '');
+    setBadge('talk', (typeof talk !== 'undefined' && talk && talk.length) ? talk.length + '개' : '');
     setBadge('draw', drawBadgeText());
   }
 
@@ -6184,7 +6383,8 @@
       go: 'draw', badge: 'draw'
     });
     list.push({ cls: 'tile-amber', emoji: '💌', name: '가족 그림', role: '그림 · 메시지', go: 'family', badge: 'family' });
-    list.push({ cls: 'tile-lilac', emoji: '📌', name: '가족 공지', role: '포스트잇', go: 'notice', badge: 'notice' });
+    list.push({ cls: 'tile-chat', emoji: '💬', name: '마로엘 가족톡', role: '빠른 답장', go: 'talk', badge: 'talk' });
+    list.push({ cls: 'tile-lilac', emoji: '📌', name: '가족 공지', role: '가족 모두에게', go: 'notice', badge: 'notice' });
 
     list.forEach(function (o) { grid.appendChild(buildTile(o)); });
 
@@ -6201,6 +6401,8 @@
     loc.setAttribute('data-act', 'loc');
     loc.innerHTML = '📍 내 위치 체크인 <i>(이 기기 기준)</i>';
     foot.appendChild(loc);
+
+    renderStatus();
   }
 
   /* ---------- 부모님만 고치기 ---------- */
@@ -6280,6 +6482,7 @@
     if (name === 'dad' || name === 'mom') return p;
     if (name === 'today') return p;
     if (name === 'study') return p || currentUser === 'sein';
+    if (name === 'talk') return true;
     return name === 'notice' || name === 'draw';
   }
 
@@ -7545,6 +7748,395 @@
   }
 
   /* =========================================================
+     16-d. 우리 가족 지금 뭐해요? · 마로엘 가족톡
+     ========================================================= */
+  var TALK_KEY = 'kidsdash.talk.v1';
+  var TALK_QUICK = ['사랑해 ❤️', '알았어 👍', '곧 갈게 🚗', '잘했어 👏', '전화할게 📞', '안 돼 🙅‍♀️'];
+
+  var talk = readJSON(TALK_KEY, null);
+  if (!Array.isArray(talk)) talk = [];
+  talk = talk.filter(function (m) {
+    return m && typeof m === 'object' && typeof m.text === 'string' && m.text.trim();
+  }).slice(-120);
+
+  var talkTo = null;
+
+  var STATUS_PRESETS = {
+    dad: [
+      { t: '회의중', e: '💼' }, { t: '운전중', e: '🚗' },
+      { t: '집 · 휴식중', e: '🏠' }, { t: '외출중', e: '🚶' }
+    ],
+    mom: [
+      { t: '휴식중', e: '😴' }, { t: '집안일', e: '🧺' },
+      { t: '외출중', e: '🛒' }, { t: '요리중', e: '🍳' }
+    ],
+    yuchan: [
+      { t: '수업중', e: '🏫' }, { t: '숙제중', e: '✏️' },
+      { t: '노는중', e: '🎮' }, { t: '집 · 쉬는중', e: '🏠' }
+    ],
+    sein: [
+      { t: '공부중', e: '📚' }, { t: '노는중', e: '🎨' },
+      { t: '미술시간', e: '🖍️' }, { t: '동화책 읽는중', e: '📖' }
+    ]
+  };
+
+  var statusModal = $('#statusModal');
+  var statusTarget = null;
+  var statusBusyOn = false;
+
+  function statusLabel(id) {
+    if (id === 'dad') return '아빠는 지금';
+    if (id === 'mom') return '엄마는 지금';
+    if (id === 'yuchan') return '유찬이는 지금';
+    return '세인이는 지금';
+  }
+
+  function statusOf(id) {
+    if (!state.status || typeof state.status !== 'object') return null;
+    var st = state.status[id];
+    return (st && typeof st === 'object' && typeof st.text === 'string' && st.text) ? st : null;
+  }
+
+  function timeAgo(ts) {
+    if (!ts) return '';
+    var diff = Date.now() - ts;
+    if (diff < 0) diff = 0;
+    if (diff < 60 * 1000) return '방금';
+    if (diff < 60 * 60 * 1000) return Math.floor(diff / 60000) + '분 전';
+    if (diff < 24 * 60 * 60 * 1000) return Math.floor(diff / 3600000) + '시간 전';
+    var d = new Date(ts);
+    return (d.getMonth() + 1) + '월 ' + d.getDate() + '일';
+  }
+
+  function renderStatus() {
+    var box = $('#homeStatus');
+    if (!box) return;
+    box.textContent = '';
+    if (!userInfo(currentUser)) return;
+
+    var head = el('div', 'statushead');
+    var t = el('b');
+    t.textContent = '🏠 우리 가족 지금 뭐해요?';
+    var s = el('span');
+    s.textContent = '내 상태는 눌러서 바꿔요';
+    head.appendChild(t);
+    head.appendChild(s);
+    box.appendChild(head);
+
+    var grid = el('div', 'statusgrid');
+
+    ['dad', 'mom', 'yuchan', 'sein'].forEach(function (id) {
+      var u = userInfo(id);
+      var st = statusOf(id);
+
+      var card = el('button', 'statuscard');
+      card.type = 'button';
+      card.style.setProperty('--st', u.soft);
+
+      var face = el('span', 'stface');
+      var img = document.createElement('img');
+      img.alt = pokeName(u.poke);
+      img.src = artworkUrl(u.poke);
+      img.addEventListener('error', function () { face.innerHTML = POKEBALL_SVG; });
+      face.appendChild(img);
+
+      var body = el('div', 'stbody');
+      var nm = el('div', 'stname');
+      nm.textContent = statusLabel(id);
+      var val = el('div', 'stval');
+      val.textContent = st ? ((st.emoji ? st.emoji + ' ' : '') + st.text) : '아직 안 알려 줬어요';
+      var when = el('div', 'stwhen');
+      when.textContent = st ? timeAgo(st.at) : '눌러서 알려 주기';
+
+      body.appendChild(nm);
+      body.appendChild(val);
+      body.appendChild(when);
+
+      if (st && st.busy) {
+        var busy = el('span', 'stbusy');
+        busy.textContent = '🚨 연락 어려워요';
+        body.appendChild(busy);
+      }
+
+      card.appendChild(face);
+      card.appendChild(body);
+      card.addEventListener('click', function () { openStatus(id); });
+      grid.appendChild(card);
+    });
+
+    box.appendChild(grid);
+  }
+
+  function paintStatusBusy() {
+    var b = $('#statusBusy');
+    if (!b) return;
+    b.classList.toggle('on', statusBusyOn);
+    b.textContent = statusBusyOn ? '🚨 연락 어려워요 (켜짐)' : '🚨 연락 어려워요';
+  }
+
+  function syncStatusPresetSel() {
+    var box = $('#statusPresets');
+    if (!box) return;
+    var cur = ($('#statusInput').value || '').trim();
+    var list = box.querySelectorAll('.spreset');
+    for (var i = 0; i < list.length; i++) {
+      list[i].classList.toggle('on', list[i].getAttribute('data-t') === cur);
+    }
+  }
+
+  function renderStatusPresets() {
+    var box = $('#statusPresets');
+    if (!box || !statusTarget) return;
+    box.textContent = '';
+
+    (STATUS_PRESETS[statusTarget] || []).forEach(function (p) {
+      var b = el('button', 'spreset');
+      b.type = 'button';
+      b.textContent = p.e + ' ' + p.t;
+      b.setAttribute('data-t', p.t);
+      b.addEventListener('click', function () {
+        $('#statusInput').value = p.t;
+        syncStatusPresetSel();
+      });
+      box.appendChild(b);
+    });
+
+    syncStatusPresetSel();
+  }
+
+  function openStatus(id) {
+    if (!currentUser) { showLogin(); return; }
+
+    if (id !== currentUser && !isParentId(currentUser)) {
+      showToast('내 상태는 내가 바꿀 수 있어요. 부모님은 모두 바꿀 수 있어요');
+      return;
+    }
+
+    statusTarget = id;
+    var u = userInfo(id);
+    var st = statusOf(id);
+
+    $('#statusTitle').textContent = (id === currentUser ? '내 상태' : (u.name + ' ' + u.role + ' 상태')) + ' 알려 주기';
+    $('#statusInput').value = st ? st.text : '';
+    statusBusyOn = !!(st && st.busy);
+    renderStatusPresets();
+    paintStatusBusy();
+    statusModal.classList.add('show');
+    setTimeout(function () { $('#statusInput').focus(); }, 60);
+  }
+
+  function closeStatus() {
+    statusModal.classList.remove('show');
+    statusTarget = null;
+  }
+
+  function saveStatus() {
+    if (!statusTarget) return;
+    var text = String($('#statusInput').value || '').replace(/\s+/g, ' ').trim().slice(0, 20);
+    if (!text) {
+      showToast('지금 하는 일을 골라 주세요');
+      return;
+    }
+
+    var emoji = '';
+    (STATUS_PRESETS[statusTarget] || []).forEach(function (p) { if (p.t === text) emoji = p.e; });
+
+    if (!state.status || typeof state.status !== 'object') state.status = {};
+    state.status[statusTarget] = { text: text, emoji: emoji, busy: statusBusyOn, at: Date.now() };
+    save();
+
+    var who = statusTarget;
+    closeStatus();
+    renderStatus();
+    showToast((who === currentUser ? '내 상태' : userInfo(who).name + ' 상태') + '를 가족에게 알려 줬어요');
+  }
+
+  function clearStatus() {
+    if (!statusTarget) return;
+    if (state.status) delete state.status[statusTarget];
+    save();
+    closeStatus();
+    renderStatus();
+    showToast('상태를 지웠어요');
+  }
+
+  /* ---------- 마로엘 가족톡 ---------- */
+  function fmtTalkTime(ts) {
+    var d = new Date(ts);
+    var h = d.getHours();
+    var ap = h < 12 ? '오전' : '오후';
+    var hh = h % 12;
+    if (hh === 0) hh = 12;
+    return ap + ' ' + hh + ':' + pad2(d.getMinutes());
+  }
+
+  function dayKeyOf(ts) {
+    var d = new Date(ts);
+    return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate());
+  }
+
+  function dayLabelFull(ts) {
+    var d = new Date(ts);
+    var now = new Date();
+    var todayKey = now.getFullYear() + '-' + pad2(now.getMonth() + 1) + '-' + pad2(now.getDate());
+    var key = dayKeyOf(ts);
+    if (key === todayKey) return '오늘';
+    var y = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+    if (key === dayKeyOf(y.getTime())) return '어제';
+    return (d.getMonth() + 1) + '월 ' + d.getDate() + '일 ' + WD[d.getDay()] + '요일';
+  }
+
+  function talkBadgeText() {
+    if (!talk.length) return '';
+    return talk.length + '개';
+  }
+
+  function renderTalkQuick() {
+    var box = $('#talkQuick');
+    if (!box) return;
+    box.textContent = '';
+    TALK_QUICK.forEach(function (t) {
+      var b = el('button', 'qchip');
+      b.type = 'button';
+      b.textContent = t;
+      b.addEventListener('click', function () { sendTalk(t); });
+      box.appendChild(b);
+    });
+  }
+
+  function renderTalkTo() {
+    var box = $('#talkToRow');
+    if (!box) return;
+    box.textContent = '';
+
+    var lab = el('span', 'talktolabel');
+    lab.textContent = '누구에게?';
+    box.appendChild(lab);
+
+    var all = el('button', 'talkchip' + (talkTo === null ? ' on' : ''));
+    all.type = 'button';
+    all.textContent = '모두에게';
+    all.addEventListener('click', function () {
+      talkTo = null;
+      renderTalkTo();
+    });
+    box.appendChild(all);
+
+    FAMILY.forEach(function (m) {
+      if (m.id === currentUser) return;
+      var b = el('button', 'talkchip' + (talkTo === m.id ? ' on' : ''));
+      b.type = 'button';
+      b.textContent = m.id === 'dad' ? '아빠' : (m.id === 'mom' ? '엄마' : m.name);
+      b.addEventListener('click', function () {
+        talkTo = (talkTo === m.id) ? null : m.id;
+        renderTalkTo();
+      });
+      box.appendChild(b);
+    });
+  }
+
+  function renderTalk() {
+    var list = $('#talkList');
+    if (!list) return;
+
+    list.textContent = '';
+    renderTalkQuick();
+    renderTalkTo();
+
+    var cnt = $('#talkCount');
+    if (cnt) cnt.textContent = talk.length ? talk.length + '개 이야기' : '';
+
+    if (!talk.length) {
+      var e = el('div', 'tempty');
+      e.textContent = '아직 가족톡이 비어 있어요.\n아래 빠른 답장을 눌러 첫 인사를 남겨 보세요! 💬';
+      list.appendChild(e);
+      return;
+    }
+
+    var lastDay = '';
+    talk.forEach(function (m) {
+      var day = dayKeyOf(m.at);
+      if (day !== lastDay) {
+        lastDay = day;
+        var dv = el('div', 'tday');
+        dv.textContent = dayLabelFull(m.at);
+        list.appendChild(dv);
+      }
+
+      var mine = m.who === currentUser;
+      var row = el('div', 'tmsg' + (mine ? ' mine' : ''));
+
+      row.appendChild(faceNode(famMember(m.who).poke, 'tmface'));
+
+      var body = el('div', 'tmbody');
+      var meta = el('div', 'tmmeta');
+      var whoName = famMember(m.who).name;
+      var toTxt = '';
+      if (m.to) toTxt = ' → ' + (m.to === currentUser ? '나' : famMember(m.to).name);
+      meta.textContent = whoName + toTxt + ' · ' + fmtTalkTime(m.at);
+
+      var bubble = el('div', 'tmbubble');
+      bubble.textContent = m.text;
+
+      body.appendChild(meta);
+      body.appendChild(bubble);
+      row.appendChild(body);
+      list.appendChild(row);
+    });
+
+    list.scrollTop = list.scrollHeight;
+  }
+
+  function sendTalk(text) {
+    if (!currentUser) {
+      showToast('먼저 누가 접속했는지 골라 주세요');
+      showLogin();
+      return false;
+    }
+
+    var v = String(text || '').replace(/\s+/g, ' ').trim().slice(0, 120);
+    if (!v) return false;
+
+    talk.push({ id: uid(), who: currentUser, to: talkTo, text: v, at: Date.now() });
+    if (talk.length > 120) talk = talk.slice(-120);
+    writeJSON(TALK_KEY, talk);
+
+    var input = $('#talkInput');
+    if (input) input.value = '';
+
+    renderTalk();
+    updateHome();
+    return true;
+  }
+
+  (function bindStatusTalk() {
+    if (statusModal) {
+      statusModal.addEventListener('click', function (e) { if (e.target === statusModal) closeStatus(); });
+      $('#statusCancel').addEventListener('click', closeStatus);
+      $('#statusOk').addEventListener('click', saveStatus);
+      $('#statusClear').addEventListener('click', clearStatus);
+      $('#statusBusy').addEventListener('click', function () {
+        statusBusyOn = !statusBusyOn;
+        paintStatusBusy();
+      });
+      $('#statusInput').addEventListener('input', syncStatusPresetSel);
+      $('#statusInput').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); saveStatus(); }
+        if (e.key === 'Escape') closeStatus();
+      });
+    }
+
+    var ti = $('#talkInput');
+    if (ti) {
+      ti.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); sendTalk(ti.value); }
+      });
+    }
+    var ts = $('#talkSend');
+    if (ts) ts.addEventListener('click', function () { sendTalk($('#talkInput').value); });
+  })();
+
+  /* =========================================================
      17. 시작
      ========================================================= */
   function init() {
@@ -7570,6 +8162,7 @@
     refreshParentForm('mom');
     renderNotices();
     renderDraw();
+    renderTalk();
     updateHome();
 
     ensureLocks();

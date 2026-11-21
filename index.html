@@ -1706,11 +1706,12 @@
     display:flex; align-items:center; gap:10px;
     z-index:9500;
     opacity:0;
+    visibility:hidden;
     pointer-events:none;
     transition:opacity .22s, transform .22s;
     max-width:90vw;
   }
-  #toast.show{ opacity:1; transform:translate(-50%, 0); pointer-events:auto; }
+  #toast.show{ opacity:1; visibility:visible; transform:translate(-50%, 0); pointer-events:auto; }
   #toast button{
     border:0;
     background:rgba(255,255,255,.16);

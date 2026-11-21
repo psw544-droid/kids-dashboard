@@ -1975,7 +1975,7 @@
     font-size:clamp(11.5px,1.6vh,13.5px); cursor:pointer; white-space:nowrap;
   }
   .rememberbtn.on{ border-color:#7db8ff; background:#eef7ff; color:#2f6ea8; }
-  .loginnote{ font-size:11.5px; line-height:1.55; color:#9db1c7; text-align:center; }
+  .loginnote{ font-size:11.5px; line-height:1.55; color:#9db1c7; text-align:center; word-break:keep-all; padding:0 6px; }
   .loginnote b{ color:#7c95b0; }
 
   /* ---------------- 부모님 PIN ---------------- */
@@ -6985,6 +6985,8 @@
     bar.appendChild(dots);
     bar.appendChild(st);
     wrap.appendChild(bar);
+    var sroot = $('#studyRoot');
+    if (sroot) sroot.appendChild(wrap);
     return wrap;
   }
 
@@ -7037,7 +7039,7 @@
     quiz.locked = false;
     quiz.tries = 0;
 
-    root.appendChild(quizShell());
+    var qwrap = quizShell();
 
     var card = el('div', 'quizcard');
 
@@ -7072,7 +7074,7 @@
       choices.appendChild(b);
     });
     card.appendChild(choices);
-    root.appendChild(card);
+    qwrap.appendChild(card);
   }
 
   function answerHangul(btn, c) {
@@ -7167,7 +7169,7 @@
     var q = quiz.qs[quiz.i];
     quiz.locked = false;
 
-    root.appendChild(quizShell());
+    var qwrap = quizShell();
 
     var card = el('div', 'quizcard');
 
@@ -7205,7 +7207,7 @@
       pad2el.appendChild(b);
     });
     card.appendChild(pad2el);
-    root.appendChild(card);
+    qwrap.appendChild(card);
   }
 
   function mathKey(k) {
@@ -7324,7 +7326,7 @@
       quiz.tries = 0;
     }
 
-    root.appendChild(quizShell());
+    var qwrap = quizShell();
 
     var card = el('div', 'quizcard');
     card.appendChild(clockFace(q.h, q.m));
@@ -7376,7 +7378,7 @@
       card.appendChild(row2);
     }
 
-    root.appendChild(card);
+    qwrap.appendChild(card);
   }
 
   function checkClock(mm) {
@@ -7454,7 +7456,7 @@
     quiz.locked = false;
     quiz.tries = 0;
 
-    root.appendChild(quizShell());
+    var qwrap = quizShell();
 
     var card = el('div', 'quizcard');
 
@@ -7479,7 +7481,7 @@
       choices.appendChild(b);
     });
     card.appendChild(choices);
-    root.appendChild(card);
+    qwrap.appendChild(card);
   }
 
   function answerCount(btn, v) {
@@ -7921,7 +7923,9 @@
     var u = userInfo(id);
     var st = statusOf(id);
 
-    $('#statusTitle').textContent = (id === currentUser ? '내 상태' : (u.name + ' ' + u.role + ' 상태')) + ' 알려 주기';
+    $('#statusTitle').textContent = (id === currentUser
+      ? '내 상태'
+      : ((u.parent ? u.name + ' ' + u.role : u.name) + ' 상태')) + ' 알려 주기';
     $('#statusInput').value = st ? st.text : '';
     statusBusyOn = !!(st && st.busy);
     renderStatusPresets();

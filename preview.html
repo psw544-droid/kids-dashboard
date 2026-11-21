@@ -11,13 +11,14 @@
 </style>
 </head>
 <body>
-<iframe id="phone" src="./index.html"></iframe>
+<iframe id="phone" src="about:blank"></iframe>
 <div id="log">errors: (loading)</div>
 <script>
   var f = document.getElementById('phone');
   var log = document.getElementById('log');
   var errs = [];
   window.__errs = errs;
+  f.src = './index.html?v=' + Date.now();
   function show() { log.textContent = errs.length ? errs.join('\n') : 'errors: none'; }
   function hook() {
     try {

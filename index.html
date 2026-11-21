@@ -1893,9 +1893,9 @@
     align-items:center; justify-content:center;
     overflow:hidden;
   }
-  .ticket.open .trank{ font-size:clamp(13px,2vh,18px); color:#1d3552; line-height:1.1; }
+  .ticket.open .trank{ font-size:clamp(14px,2.1vh,19px); color:#1d3552; line-height:1.1; }
   .ticket.open .tprize{
-    font-size:clamp(7px,.95vh,9px); color:#7c95b0;
+    font-size:clamp(8px,1.1vh,10px); color:#7c95b0;
     margin-top:2px; line-height:1.1; padding:0 2px;
     overflow:hidden; overflow-wrap:anywhere;
     display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
@@ -2162,7 +2162,7 @@
 
   /* ---------------- 학습 (세인 · 예비초) ---------------- */
   .studystars{ margin-left:auto; flex:0 0 auto; background:#fff; border-radius:99px; padding:6px 12px; box-shadow:var(--shadow); font-size:clamp(11.5px,1.6vh,14px); color:#b8842a; white-space:nowrap; }
-  .studyroot{ position:relative; display:flex; flex-direction:column; gap:10px; padding-bottom:6px; }
+  .studyroot{ position:relative; display:flex; flex-direction:column; gap:10px; padding-bottom:6px; flex:1 1 auto; }
   .studyhero{ display:flex; align-items:center; gap:10px; background:linear-gradient(135deg,#fffaf3,#ffeef8 60%,#eef6ff); border-radius:22px; box-shadow:var(--shadow); padding:12px 14px; flex:0 0 auto; }
   .studyface{ width:clamp(46px,7vh,60px); height:clamp(46px,7vh,60px); border-radius:50%; background:#fff; display:grid; place-items:center; overflow:hidden; flex:0 0 auto; border:2px solid #ffe0ee; }
   .studyface img{ width:110%; height:110%; object-fit:contain; display:block; }
@@ -2182,7 +2182,7 @@
   .studyfoot{ text-align:center; font-size:clamp(11px,1.5vh,13px); color:#a8bcd2; padding:2px 0 4px; }
   .studynote{ font-size:clamp(11.5px,1.6vh,13.5px); color:#8aa0b8; background:#f7fbff; border-radius:12px; padding:9px 12px; line-height:1.45; }
 
-  .quizwrap{ display:flex; flex-direction:column; gap:8px; }
+  .quizwrap{ display:flex; flex-direction:column; gap:8px; flex:1 1 auto; }
   .quizbar{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
   .qback{ border:0; background:#fff; color:#5b86b2; border-radius:99px; padding:7px 12px; font-family:inherit; font-size:clamp(11.5px,1.6vh,13.5px); box-shadow:var(--shadow); cursor:pointer; white-space:nowrap; }
   .qdots{ display:flex; gap:5px; margin-left:auto; }
@@ -2190,7 +2190,7 @@
   .qdots i.ok{ background:#7fd39b; }
   .qdots i.now{ background:#a9d2ff; outline:2px solid #7db8ff; outline-offset:1px; }
   .quizstars{ flex:0 0 auto; font-size:clamp(11.5px,1.6vh,13.5px); color:#b8842a; background:#fff6dc; border-radius:99px; padding:5px 10px; white-space:nowrap; }
-  .quizcard{ display:flex; flex-direction:column; align-items:center; gap:10px; background:#fff; border:3px solid #eaf3fd; border-radius:26px; box-shadow:var(--shadow); padding:16px 14px 18px; }
+  .quizcard{ display:flex; flex-direction:column; align-items:center; gap:10px; background:#fff; border:3px solid #eaf3fd; border-radius:26px; box-shadow:var(--shadow); padding:16px 14px 18px; margin:auto 0; }
   .quizemoji{ font-size:clamp(46px,11vw,76px); line-height:1; }
   .quizword{ display:flex; align-items:center; justify-content:center; gap:.08em; font-family:"Gaegu","Jua",inherit; font-size:clamp(38px,11vw,60px); line-height:1.05; color:#1d3552; }
   .quizword .blank{ display:inline-grid; place-items:center; width:1.02em; height:1.1em; border-bottom:5px solid #cfe0f2; color:#c3d4e6; font-size:.86em; }
@@ -2237,7 +2237,7 @@
   .tracetab.on{ background:#3f9bff; color:#fff; box-shadow:0 2px 8px rgba(63,155,255,.26); }
   .tracebox{ position:relative; width:100%; max-width:min(92vw,430px); aspect-ratio:1/1; margin:0 auto; border-radius:24px; background:#fff; border:2px dashed #dbe8f6; overflow:hidden; touch-action:none; box-shadow:var(--shadow); }
   .tracegrid{ position:absolute; inset:0; background-image:linear-gradient(#f3f8fe 1px, transparent 1px), linear-gradient(90deg,#f3f8fe 1px, transparent 1px); background-size:12.5% 12.5%; background-position:center; }
-  .traceguide{ position:absolute; inset:0; display:grid; place-items:center; font-family:"Jua","Gaegu",sans-serif; font-size:min(62vw,52vh); line-height:1; color:#f2f8ff; -webkit-text-stroke:2px #dce9f7; pointer-events:none; -webkit-user-select:none; user-select:none; }
+  .traceguide{ position:absolute; inset:0; display:grid; place-items:center; font-family:"Jua","Gaegu",sans-serif; font-size:min(62vw,52vh); line-height:1; color:#eaf4fe; -webkit-text-stroke:2px #cfe1f2; pointer-events:none; -webkit-user-select:none; user-select:none; }
   #tracePad{ position:absolute; inset:0; width:100%; height:100%; display:block; touch-action:none; cursor:crosshair; }
   .tracehint{ position:absolute; left:0; right:0; bottom:7px; text-align:center; font-size:clamp(10.5px,1.4vh,12.5px); color:#c3d3e3; pointer-events:none; }
   .tracebtns{ display:flex; gap:6px; flex-wrap:wrap; justify-content:center; }
@@ -2269,10 +2269,10 @@
     white-space:nowrap; min-width:0;
   }
   .blogo{
-    width:clamp(28px,4.2vh,38px); height:clamp(28px,4.2vh,38px);
-    border-radius:11px; object-fit:cover; object-position:50% 32%;
-    background:#fdf7ee; flex:0 0 auto;
-    box-shadow:0 2px 7px rgba(130,90,40,.22), inset 0 0 0 1px rgba(255,255,255,.7);
+    width:auto; height:clamp(24px,3.6vh,30px);
+    border-radius:8px; object-fit:contain;
+    background:#fdf7ee; flex:0 0 auto; padding:1px 2px;
+    box-shadow:0 2px 7px rgba(130,90,40,.18), inset 0 0 0 1px rgba(255,255,255,.7);
   }
   .btxt{ display:flex; align-items:baseline; gap:6px; min-width:0; overflow:hidden; }
   .btxt b{ font-weight:400; color:#8a4a1e; letter-spacing:.03em; white-space:nowrap; }
@@ -2309,9 +2309,9 @@
   }
   .stface img{ width:112%; height:112%; object-fit:contain; display:block; }
   .stbody{ display:flex; flex-direction:column; gap:1px; min-width:0; line-height:1.2; }
-  .stname{ font-size:clamp(9.5px,1.35vh,11.5px); color:#9db1c7; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .stval{ font-size:clamp(11.5px,1.6vh,13.5px); color:#26405f; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .stwhen{ font-size:clamp(9px,1.25vh,10.5px); color:#b2c3d6; white-space:nowrap; }
+  .stname{ font-size:clamp(10px,1.45vh,12px); color:#9db1c7; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .stval{ font-size:clamp(12px,1.7vh,14px); color:#26405f; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .stwhen{ font-size:clamp(9.5px,1.3vh,11px); color:#b2c3d6; white-space:nowrap; }
   .stbusy{
     display:inline-flex; width:max-content; margin-top:1px;
     font-size:clamp(8.5px,1.15vh,10px); color:#c2453f; background:#ffeceb;
@@ -2336,10 +2336,11 @@
   /* ---------------- 마로엘 가족톡 ---------------- */
   #scr-talk{ overflow:hidden; }
   .talkcount{ margin-left:auto; flex:0 0 auto; font-size:clamp(10.5px,1.45vh,12.5px); color:#a8bcd2; background:#fff; border-radius:99px; padding:5px 10px; box-shadow:var(--shadow); }
+  .talkcount:empty{ display:none; }
   .talkhead{ display:flex; flex-direction:column; gap:2px; flex:0 0 auto; padding:0 3px; }
   .talktitle{ font-size:clamp(17px,2.4vh,22px); color:#1d3552; }
   .talksub{ font-size:clamp(10.5px,1.45vh,12.5px); color:#9db1c7; }
-  .talkquick{ display:flex; gap:6px; overflow-x:auto; padding:2px 0 4px; flex:0 0 auto; scrollbar-width:none; }
+  .talkquick{ display:flex; gap:6px; overflow-x:auto; padding:2px 0 4px; flex:0 0 auto; scrollbar-width:none; -webkit-mask-image:linear-gradient(to right, #000 94%, rgba(0,0,0,0)); mask-image:linear-gradient(to right, #000 94%, rgba(0,0,0,0)); }
   .talkquick::-webkit-scrollbar{ display:none; }
   .qchip{
     flex:0 0 auto; border:2px solid #ffe0ee; background:#fff; color:#c9527f;
@@ -2355,6 +2356,7 @@
     scrollbar-width:none;
   }
   .talklist::-webkit-scrollbar{ display:none; }
+  .talklist::before{ content:""; display:block; margin-top:auto; }
   .tday{ text-align:center; font-size:11px; color:#a8bcd2; padding:4px 0; }
   .tmsg{ display:flex; gap:7px; align-items:flex-end; max-width:100%; }
   .tmsg.mine{ flex-direction:row-reverse; }
@@ -2419,7 +2421,7 @@
     <header class="hero">
       <div class="heroTop">
         <div class="brand">
-          <img class="blogo" src="maroel-logo.jpg" alt="MAROEL">
+          <img class="blogo" src="maroel-mark.jpg" alt="MAROEL">
           <span class="btxt"><b>MAROEL</b><i>우리집 대시보드</i></span>
         </div>
         <div class="heroRight">
@@ -2790,7 +2792,7 @@
     <button class="act" data-act="wake">🔒 화면 켜짐 유지 다시 시도</button>
     <button class="act" data-act="uncheck">↺ 오늘 체크 모두 풀기</button>
     <button class="act" data-act="reset">🧹 할 일을 처음 상태로</button>
-    <div class="sheetnote">밤 10시 ~ 아침 7시에는 화면이 까맣게 꺼져요. 까만 화면을 살짝 누르면 시간이 잠깐 보여요. 오늘 받은 칭찬 스티커는 체크를 풀어도 지워지지 않아요.<br><br>아이 화면·일정 화면 위의 <b>📌 이 화면 고정</b>을 누르면, 그 폰에서는 앱을 열 때 바로 그 화면이 나와요. 다시 누르면 우리집 홈으로 돌아가요.</div>
+    <div class="sheetnote">밤 10시 ~ 아침 7시에는 화면이 까맣게 꺼져요. 까만 화면을 살짝 누르면 시간이 잠깐 보여요. 오늘 받은 칭찬 스티커는 체크를 풀어도 지워지지 않아요.<br><br>부모님(상우·은정) 화면과 상품·일정 고치기는 <b>PIN</b>으로 잠겨 있어요. 처음 PIN은 <b>1234</b>이고 여기서 바꿀 수 있어요. 아이는 자기 할 일 체크와 가족톡·가족 공지·그림은 그대로 쓸 수 있어요.<br><br>아이 화면·일정 화면 위의 <b>📌 이 화면 고정</b>을 누르면, 그 폰에서는 앱을 열 때 바로 그 화면이 나와요. 다시 누르면 우리집 홈으로 돌아가요.</div>
     <button class="close" data-act="close">닫기</button>
   </div>
 </div>
@@ -5794,7 +5796,9 @@
         num.textContent = String(t.n);
         b.appendChild(num);
         b.setAttribute('aria-label', t.n + '번 종이 뽑기');
-        if (!rec) {
+        if (rec) {
+          b.disabled = true;
+        } else {
           b.addEventListener('click', (function (n) {
             return function () { openTicket(n); };
           })(t.n));
@@ -6220,15 +6224,15 @@
         t += k.tasks.length;
         k.tasks.forEach(function (x) { if (x.done) d++; });
       });
-      return '아이들 할 일 ' + d + ' / ' + t + ' · 가족 공지 ' + (notices ? notices.length : 0) + '개';
+      return '아이들 ' + d + ' / ' + t + ' · 공지 ' + (notices ? notices.length : 0) + '개';
     }
 
     var k2 = kidState(currentUser);
     var done = 0;
     k2.tasks.forEach(function (x) { if (x.done) done++; });
     var month = Math.min(monthDays(k2).length, GOAL);
-    var extra = currentUser === 'sein' ? (' · ⭐ 학습 ' + studyStars() + '개') : '';
-    return '오늘 할 일 ' + done + ' / ' + k2.tasks.length + ' · 이번 달 스티커 ' + month + '개' + extra;
+    var extra = currentUser === 'sein' ? (' · ⭐ ' + studyStars()) : '';
+    return '오늘 ' + done + ' / ' + k2.tasks.length + ' · 스티커 ' + month + '개' + extra;
   }
 
   function applyUser() {
@@ -7948,7 +7952,10 @@
     var who = statusTarget;
     closeStatus();
     renderStatus();
-    showToast((who === currentUser ? '내 상태' : userInfo(who).name + ' 상태') + '를 가족에게 알려 줬어요');
+    var whoName = who === currentUser
+      ? '내 상태'
+      : ((isParentId(who) ? userInfo(who).role : userInfo(who).name) + ' 상태');
+    showToast(whoName + '를 가족에게 알려 줬어요');
   }
 
   function clearStatus() {

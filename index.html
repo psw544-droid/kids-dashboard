@@ -1939,7 +1939,7 @@
   #login.show{ display:flex; }
   .loginwrap{ width:min(660px, 100%); display:flex; flex-direction:column; gap:clamp(12px,2vh,20px); }
   .logintop{ text-align:center; }
-  .loginhome{ font-size:12.5px; letter-spacing:.06em; color:#8fa6bd; }
+  .loginhome{ font-size:12.5px; letter-spacing:.06em; color:#7c95b0; }
   .logintop h1{ margin:6px 0 4px; font-weight:400; font-size:clamp(26px,7vw,38px); color:#1d3552; }
   .loginsub{ margin:0; font-size:clamp(12.5px,1.9vh,15px); color:#7c95b0; }
   .logingrid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(9px,1.4vw,14px); }
@@ -2426,7 +2426,7 @@
         </div>
         <div class="heroRight">
           <div class="whochip" id="whoChip" hidden><img alt=""><b>–</b><span>–</span></div>
-          <button class="switchbtn" id="btnSwitch" type="button">🔄 <span class="swtxt">사용자 전환</span></button>
+          <button class="switchbtn" id="btnSwitch" type="button" aria-label="사용자 전환">🔄 <span class="swtxt">사용자 전환</span></button>
           <div class="controls">
             <button id="btnFull" title="전체 화면" aria-label="전체 화면">⛶</button>
             <button id="btnGear" title="설정" aria-label="설정">⚙</button>
@@ -2747,7 +2747,7 @@
     </div>
     <div class="talkhead">
       <div class="talktitle">💬 마로엘 가족톡</div>
-      <div class="talksub">카톡 없이도 가족과 이야기해요 · 내 이름으로 자동 전송</div>
+      <div class="talksub">카톡 없이도 가족과 이야기해요 · 이 기기에 저장</div>
     </div>
     <div class="talkquick" id="talkQuick"></div>
     <div class="talklist" id="talkList"></div>
@@ -5781,6 +5781,7 @@
 
       if (t.by) {
         b.classList.add('open');
+        b.disabled = true;
         if (!t.r) b.classList.add('boom');
         var tin = el('span', 'tin');
         var rk = el('span', 'trank');
